@@ -2,6 +2,8 @@
 
 First of all in no way am I aiming for best design here (obviously lol), Just wanted to have a quick introduction to using Prisma and learning Next.js API Endpoints.
 
+https://prisma-learning-five.vercel.app
+
 ## Getting Started
 
 First, run the development server:
