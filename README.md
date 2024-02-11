@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Project
+
+First of all in no way am I aiming for best design here (obviously lol), Just wanted to have a quick introduction to using Prisma and learning Next.js API Endpoints.
 
 ## Getting Started
 
