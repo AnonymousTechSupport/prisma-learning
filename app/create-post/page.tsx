@@ -2,10 +2,15 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Button, Input } from "../Components";
+import { useRouter } from "next/navigation";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [fail, setFail] = useState(false);
+
+  const router = useRouter();
 
   const handleTitleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,13 +30,20 @@ const CreatePost = () => {
     console.log(title, content);
 
     try {
-      await fetch("/api/create-post/", {
+      const response = await fetch("/api/create-post/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ title, content }),
       });
+
+      if (response.ok) {
+        router.refresh();
+        return setSuccess(true);
+      } else {
+        return setFail(true);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -79,6 +91,28 @@ const CreatePost = () => {
             <Button text="Return to Home" type="button" />
           </Link>
         </div>
+
+        {/* TODO Make these components */}
+        {success && (
+          <div className="mt-5 p-5 bg-green-500 rounded-xl shadow-lg shadow-slate-600 outline outline-1 outline-green-900 w-full slide-in-bck-left">
+            <h1 className="font-bold text-white text-[30px]">
+              Post created successfully!
+            </h1>
+            <p className=" from-neutral-500 text-slate-200 text-[20px]">
+              You may return to the Home page to view your new feed!
+            </p>
+          </div>
+        )}
+        {fail && (
+          <div className="mt-5 p-5 bg-red-500 rounded-xl shadow-lg shadow-slate-600 outline outline-1 outline-red-900 w-full slide-in-bck-left">
+            <h1 className="font-bold text-white text-[30px]">
+              Unfortunately the post was not created!
+            </h1>
+            <p className=" from-neutral-500 text-slate-200 text-[20px]">
+              There may be some database issues!
+            </p>
+          </div>
+        )}
       </form>
     </main>
   );
