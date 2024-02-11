@@ -10,6 +10,11 @@ export async function POST(req: Request) {
       title: title,
       content: content,
       published: true,
+      author: {
+        create: {
+          name: "John Doe (Hardcoded For Now)",
+        },
+      },
     },
   });
   return NextResponse.json({ result });
