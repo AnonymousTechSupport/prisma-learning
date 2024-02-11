@@ -4,7 +4,7 @@ import Link from "next/link";
 export const Navbar = () => {
   const isLoggedIn = false;
   return (
-    <div className="shadow shadow-md shadow-slate-400 outline outline-1 outline-slate-400 rounded-xl ml-10 mr-10 mt-10 p-5">
+    <div className="shadow-md shadow-slate-400 outline outline-1 outline-slate-400 rounded-xl ml-10 mr-10 mt-10 p-5">
       <h1 className="font-semibold text-2xl">Heres your Feed for Today!</h1>
       <div className="flex flex-col w-full">
         {!isLoggedIn && (

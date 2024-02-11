@@ -1,9 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { Posts } from "./Posts";
+import { unstable_noStore as noStore } from "next/cache";
 
 const prisma: PrismaClient = new PrismaClient();
 
 async function getPosts() {
+  noStore();
+
   const posts = await prisma.post.findMany({
     where: { published: true },
     include: {
